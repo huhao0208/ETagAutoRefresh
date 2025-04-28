@@ -1,0 +1,11 @@
+# 源代码
+src/
+# 测试文件
+test/
+# 配置文件
+tsconfig.json
+webpack.config.js
+# 其他
+.gitignore
+.npmignore
+*.log 

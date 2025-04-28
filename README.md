@@ -16,13 +16,13 @@
 
 ```bash
 # npm
-npm install etag-auto-refresh --save-dev
+npm install etag-auto-refresh
 
 # yarn
-yarn add etag-auto-refresh -D
+yarn add etag-auto-refresh
 
 # pnpm
-pnpm add etag-auto-refresh -D
+pnpm add etag-auto-refresh
 ```
 
 ## 使用

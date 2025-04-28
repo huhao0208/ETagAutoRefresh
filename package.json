@@ -1,25 +1,47 @@
 {
   "name": "etag-auto-refresh",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A webpack/vite plugin for automatic page refresh based on ETag changes",
   "main": "dist/etag-auto-refresh.min.js",
   "module": "dist/etag-auto-refresh.esm.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "dev": "webpack --config webpack.config.js --mode development --watch"
+    "build": "tsc && webpack --config webpack.config.js",
+    "dev": "tsc --watch & webpack --config webpack.config.js --mode development --watch",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "publish": "npm publish"
   },
   "keywords": [
     "etag",
     "auto-refresh",
     "webpack-plugin",
-    "vite-plugin"
+    "vite-plugin",
+    "typescript"
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/etag-auto-refresh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/etag-auto-refresh/issues"
+  },
+  "homepage": "https://github.com/yourusername/etag-auto-refresh#readme",
   "devDependencies": {
+    "@types/node": "^20.17.32",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
+  },
+  "nodejs": {
+    "version": ">=18.0.0"
   },
   "peerDependencies": {
     "webpack": "^5.0.0"
