@@ -27,12 +27,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/etag-auto-refresh.git"
+    "url": "git+https://github.com/huhao0208/ETagAutoRefresh.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/etag-auto-refresh/issues"
+    "url": "https://github.com/huhao0208/ETagAutoRefresh/issues"
   },
-  "homepage": "https://github.com/yourusername/etag-auto-refresh#readme",
+  "homepage": "https://github.com/huhao0208/ETagAutoRefresh#readme",
   "devDependencies": {
     "@types/node": "^20.17.32",
     "ts-loader": "^9.5.2",
