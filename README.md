@@ -11,6 +11,7 @@
 - 🔇 支持静默模式
 - 🔄 自动检测资源变化
 - 🎨 支持自定义提示样式和模板
+- 📊 通过 window.ETagAutoRefresh 暴露运行状态信息
 
 ## 安装
 
@@ -73,7 +74,7 @@ import ETagAutoRefreshPlugin from 'etag-auto-refresh';
 
 export default defineConfig({
   plugins: [
-    ETagAutoRefreshPlugin({
+    new ETagAutoRefreshPlugin({
       resource: '/',
       interval: 30000,
       quiet: false,
@@ -132,7 +133,7 @@ import ETagAutoRefreshPlugin from 'etag-auto-refresh';
 
 export default defineConfig({
   plugins: [
-    ETagAutoRefreshPlugin({
+   new ETagAutoRefreshPlugin({
       resource: '/',
       interval: 5000,
       quiet: false
@@ -185,6 +186,29 @@ export default defineConfig({
 }
 ```
 
+## 访问插件状态
+
+插件会在全局 `window` 对象上暴露状态信息，可以通过 `window.ETagAutoRefresh` 访问：
+
+```javascript
+// 检查插件是否已初始化
+console.log('插件已初始化:', window.ETagAutoRefresh?.started);
+
+// 获取当前资源的ETag
+console.log('当前ETag:', window.ETagAutoRefresh?.currentEtag);
+
+// 获取最后检查时间
+console.log('最后检查时间:', new Date(window.ETagAutoRefresh?.lastCheckTime));
+
+// 获取插件版本
+console.log('插件版本:', window.ETagAutoRefresh?.version);
+
+// 获取配置选项
+console.log('配置选项:', window.ETagAutoRefresh?.options);
+```
+
+您可以使用这些信息来构建自定义的状态显示或调试工具。
+
 ## 工作原理
 
 1. 插件会在构建时自动注入监控代码
@@ -206,9 +230,10 @@ export default defineConfig({
 
 ### 1. 为什么没有检测到更新？
 
-- 检查服务器是否正确设置了ETag响应头
+- 检查服务器是否正确设置了ETag响应头（可在浏览器开发者工具中查看）
 - 确认监控的资源路径是否正确
 - 检查网络请求是否正常
+- 查看 `window.ETagAutoRefresh.currentEtag` 是否有值
 
 ### 2. 如何自定义更新提示的样式？
 
@@ -235,6 +260,29 @@ new ETagAutoRefreshPlugin({
 ### 3. 是否支持监控多个资源？
 
 目前只支持监控单个资源，如果需要监控多个资源，可以创建多个插件实例。
+
+### 4. 如何在我的应用中显示ETag信息？
+
+您可以使用 `window.ETagAutoRefresh` 对象访问插件的状态信息：
+
+```javascript
+// 在页面上显示当前ETag
+const etagElement = document.createElement('div');
+etagElement.style.position = 'fixed';
+etagElement.style.bottom = '10px';
+etagElement.style.left = '10px';
+etagElement.style.background = 'rgba(0,0,0,0.7)';
+etagElement.style.color = 'white';
+etagElement.style.padding = '5px 10px';
+etagElement.style.borderRadius = '4px';
+document.body.appendChild(etagElement);
+
+setInterval(() => {
+  if (window.ETagAutoRefresh) {
+    etagElement.textContent = `ETag: ${window.ETagAutoRefresh.currentEtag || 'unknown'}`;
+  }
+}, 1000);
+```
 
 ## License
 

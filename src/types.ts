@@ -39,4 +39,61 @@ export interface Compilation {
       tap: (name: string, callback: (data: { html: string }) => void) => void;
     };
   };
-} 
+}
+
+export interface NotificationStyle {
+  container?: {
+    position?: string;
+    bottom?: string;
+    right?: string;
+    padding?: string;
+    background?: string;
+    color?: string;
+    borderRadius?: string;
+    boxShadow?: string;
+    zIndex?: string;
+    animation?: string;
+    [key: string]: string | undefined;
+  };
+  button?: {
+    marginTop?: string;
+    padding?: string;
+    background?: string;
+    color?: string;
+    border?: string;
+    borderRadius?: string;
+    cursor?: string;
+    [key: string]: string | undefined;
+  };
+  template?: string;
+}
+
+export interface ETagAutoRefreshOptions {
+  resource?: string;
+  interval?: number;
+  quiet?: boolean;
+  notification?: NotificationStyle;
+}
+
+// 更新 Window 接口扩展
+declare global {
+  interface Window {
+    ETagAutoRefresh?: {
+      started: boolean;
+      currentEtag: string | null;
+      lastCheckTime: number | null;
+      version: string;
+      options: {
+        resource: string;
+        interval: number;
+        quiet: boolean;
+      };
+    };
+  }
+  
+  namespace ETagAutoRefreshPlugin {
+    type Options = ETagAutoRefreshOptions;
+  }
+}
+
+export type { ETagAutoRefreshOptions as ETagAutoRefreshPlugin }; 

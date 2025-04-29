@@ -1,49 +1,52 @@
 {
   "name": "etag-auto-refresh",
-  "version": "1.0.3",
-  "description": "A webpack/vite plugin for automatic page refresh based on ETag changes",
-  "main": "dist/etag-auto-refresh.min.js",
-  "module": "dist/etag-auto-refresh.esm.js",
+  "version": "1.0.0",
+  "description": "基于ETag检测的前端自动刷新插件，支持webpack和vite",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "LICENSE",
     "README.md"
   ],
   "scripts": {
-    "build": "tsc && webpack --config webpack.config.js",
-    "dev": "tsc --watch & webpack --config webpack.config.js --mode development --watch",
-    "type-check": "tsc --noEmit",
+    "build": "tsc",
     "prepublishOnly": "npm run build",
-    "publish": "npm publish"
+    "dev": "tsc --watch"
   },
   "keywords": [
     "etag",
+    "webpack",
+    "vite",
+    "plugin",
     "auto-refresh",
-    "webpack-plugin",
-    "vite-plugin",
-    "typescript"
+    "hot-reload",
+    "live-reload"
   ],
   "author": "",
   "license": "MIT",
+  "peerDependencies": {
+    "vite": ">=2.0.0",
+    "webpack": ">=4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "html-webpack-plugin": "^5.6.3",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "webpack": "^5.99.7",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huhao0208/ETagAutoRefresh.git"
+    "url": "git+https://github.com/yourusername/etag-auto-refresh.git"
   },
   "bugs": {
-    "url": "https://github.com/huhao0208/ETagAutoRefresh/issues"
+    "url": "https://github.com/yourusername/etag-auto-refresh/issues"
   },
-  "homepage": "https://github.com/huhao0208/ETagAutoRefresh#readme",
-  "devDependencies": {
-    "@types/node": "^20.17.32",
-    "ts-loader": "^9.5.2",
-    "typescript": "^5.8.3",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
-  },
-  "nodejs": {
-    "version": ">=18.0.0"
-  },
-  "peerDependencies": {
-    "webpack": "^5.0.0"
-  }
+  "homepage": "https://github.com/yourusername/etag-auto-refresh#readme"
 }
